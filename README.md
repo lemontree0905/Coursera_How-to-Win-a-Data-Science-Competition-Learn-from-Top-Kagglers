@@ -55,5 +55,30 @@
 - Interaction of categorical features can help **Linear model** and **KNN**
 
 #### Datetime and Coordinates
+- Datetime
+  - Periodicity
+  - Time since row-independenct/dependent event
+  - Difference between dates
+- Coordinates
+  - Interesting places from train/test data or additional data
+  - Centers of clusters
+  - Aggregated statisitcs
+  
+### Missing values
+- np.isnan(), pd.isnull().sum()
+- Fillna approaches
+  - -999, mean, median
+  - Reconstruct value
+  
+### Feature extraction from texts and images
+#### Texts
+- Lowercase, Lemmatization, Stemming, Stopwords
+- Bag of words
+  - sklearn.feature_extraction.text.CountVectorizer
+  
+    sklearn.feature_extraction.text.TfidfVectorizer
+  - N-grams
+
+- Embeddings (~word2vec)
 
       
