@@ -72,13 +72,16 @@
   
 ### Feature extraction from texts and images
 #### Texts
-- Lowercase, Lemmatization, Stemming, Stopwords
+- Preprocessing
+  - Lowercase, Lemmatization, Stemming, Stopwords
 - Bag of words 
   - very large vectors, meaning of each value in vector is known
-  - sklearn.feature_extraction.text.CountVectorizer
+  - TFiDF can be of use as postprocessing   
+  
+    sklearn.feature_extraction.text.CountVectorizer
   
     sklearn.feature_extraction.text.TfidfVectorizer
-  - N-grams
+  - N-grams can help to use local context
 
 - Embeddings 
   - relatively small vectors, values in vector can be interpreted only in some cases, words with similar meaning often have similar embeddings
@@ -86,3 +89,43 @@
   - Sentences: Doc2Vec, etc
         
 #### Image
+- Features can be extracted from different layers (Descriptors)
+- Careful shoosing of pretrained network can help
+- Finetuning allows to refine pretrained models
+- Data augmentation can improve the model
+
+## Week2 
+### Exploratory data analysis
+- Buiding intution about the data
+  - Getting domain knowledge
+  - Checking if the data is intuitive
+  - Understanding how the data  was generated
+- Exploring anonymized data
+  - Explore individual features
+    - Guess the meaning&types of columns 
+      df.dtypes, df.info(), df.describe(), x.value_counts(), x.isnull()
+  - Explore feature relations
+- Visualizations
+  - Explore individual features
+    - Histograms: plt.hist(x)
+    - Plot (index versus value): plt.plot(x,'.'), plt.scatter(range(len(x)), x, c=y)
+  - Explore feature relations
+    - Pairs: plt.scatter(x1,x2), pd.scatter_matrix(df); df.corr(), plt.matshow()
+    - Groups: df.mean().sort_values().plot(style='.')
+- Clean features up
+  - Duplicated and constant features
+    
+    trainset.nunique(axix=1) == 1
+    
+    df.T.drop_duplicates()
+    
+    for f in categorical_feats:
+    
+    traintest[f] = traintest[f].factorize()
+    
+    traintest.T.drop_duplicates()
+
+
+
+
+
