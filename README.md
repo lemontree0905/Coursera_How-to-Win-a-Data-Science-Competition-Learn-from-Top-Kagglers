@@ -124,6 +124,7 @@
     traintest[f] = traintest[f].factorize()
     
     traintest.T.drop_duplicates()
+  - Check if dataset is shuffled
 
 
 
