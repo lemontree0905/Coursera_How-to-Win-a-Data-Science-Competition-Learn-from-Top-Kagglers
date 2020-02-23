@@ -150,7 +150,11 @@ When you found the right hyper-parameters and want to get test predictions don't
    - Logic of feature generation depends on the data splitting strategy
    - Set up your validation to mimic the train/test split of the competition
    
-- 
+- Causes of different scores and optimal parameters & What to do
+  - Too little data & Too diverse and inconsistent data & different distributions in train and test
+  - Average scores from different KFold splits & Tune model on one split, evaluate score on the other
+
+
 
 
 
