@@ -129,17 +129,30 @@
 ### Validation
 - Validation strategies
   - Holdout: ngroups = 1 
-  
-    sklearn.model_selection.ShuffleSplit
+    - sklearn.model_selection.ShuffleSplit
   - K-fold: ngroups = k 
-  
-    sklearn.model_selection.Kfold
+    - sklearn.model_selection.Kfold
   - Leave-one-out: ngroups = len(train)
-  
-    sklearn.model_selection.LeaveOneOut
+    - may be useful if we have too little data
+    - As a general rule, most authors, and empirical evidence, suggest that 5- or 10- fold cross validation should be preferred to LOO 
+    - sklearn.model_selection.LeaveOneOut
 
 - Stratification
-  - useful small datasets, Un
+  - preserve the same target distribution over different folds
+  - useful for **small** datasets/**unbalanced** datasets/Multiclass classification
+
+- Note
+
+When you found the right hyper-parameters and want to get test predictions don't forget to retrain your model using all training data!!!
+
+- Data splitting strategies
+   - Random, rowwise ; Timewise (eg. Moving window);  By id (recommedation for new users)
+   - Logic of feature generation depends on the data splitting strategy
+   - Set up your validation to mimic the train/test split of the competition
+   
+- 
+
+
 
 
 
