@@ -125,7 +125,21 @@
     
     traintest.T.drop_duplicates()
   - Check if dataset is shuffled
+  
+### Validation
+- Validation strategies
+  - Holdout: ngroups = 1 
+  
+    sklearn.model_selection.ShuffleSplit
+  - K-fold: ngroups = k 
+  
+    sklearn.model_selection.Kfold
+  - Leave-one-out: ngroups = len(train)
+  
+    sklearn.model_selection.LeaveOneOut
 
+- Stratification
+  - useful small datasets, Un
 
 
 
