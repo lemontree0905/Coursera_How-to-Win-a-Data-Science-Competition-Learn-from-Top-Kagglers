@@ -153,6 +153,29 @@ When you found the right hyper-parameters and want to get test predictions don't
 - Causes of different scores and optimal parameters & What to do
   - Too little data & Too diverse and inconsistent data & different distributions in train and test
   - Average scores from different KFold splits & Tune model on one split, evaluate score on the other
+  
+## Week3
+### Regression metrics
+- MSE, RMSE, R-squared
+  - MSE: Mean Square Error
+  - RMSE: Root mean square error (a bit different from MSE in the case graiend based methods)
+  - R-squared
+- MAE: Mean Absolute Error (**Robust to outliers**)
+  - Not that sensitive to outliers as MSE
+  - Widely used in **finance**
+  - Median of target values is optimal for MAE
+- (R)MSPE, MAPE 
+  - MSPE: Mean Square Percentage Error (best constant: weighted target mean)
+  - MAPE: Mean Absolute Percentage Error (best constant: weighted target median)
+- (R)MSLE
+  - RMSLE: Root Mean Square Logarithmic Error 
+  - RMSE(log(y+1),log(y_true+1))
+  - 
+  
+### Classification
+- Accuracy, Logloss, AUC
+- Cohen's (Quadratic weighted) Kappa
+
 
 
 
