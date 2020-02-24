@@ -170,7 +170,7 @@ When you found the right hyper-parameters and want to get test predictions don't
 - (R)MSLE
   - RMSLE: Root Mean Square Logarithmic Error 
   - RMSE(log(y+1),log(y_true+1))
-  - 
+  - Best constant: 
   
 ### Classification
 - Accuracy, Logloss, AUC
