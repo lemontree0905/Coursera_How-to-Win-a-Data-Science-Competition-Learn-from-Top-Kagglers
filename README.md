@@ -169,13 +169,29 @@ When you found the right hyper-parameters and want to get test predictions don't
   - MAPE: Mean Absolute Percentage Error (best constant: weighted target median)
 - (R)MSLE
   - RMSLE: Root Mean Square Logarithmic Error 
-  - RMSE(log(y+1),log(y_true+1))
-  - Best constant: 
+  - RMSE(log(y_targ+1),log(y_pred+1))
+  - Frequently better than MAPE, less biased towards small targets yet works with relatvie errors
   
-### Classification
+### Classification metrics
+- Notation
+  - Soft labes are clssifier's scores
+  - Hard labels: arg max f(x), [f(x)>b] with b the threshold
 - Accuracy, Logloss, AUC
+  - Accuracy (Best constant: the most frequent class)
+  - Logarithmic loss (Best constant: set alpha_i to frequency of i-th class)  
+    - Binary:
+    <p align="center"><a href="https://www.codecogs.com/eqnedit.php?latex=LogLoss&space;=&space;\frac{1}{N}\sum&space;y_i\text{log}(\hat{y}_i)&plus;(1-y_i)\text{log}(1-\hat{y}_i)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?LogLoss&space;=&space;\frac{1}{N}\sum&space;y_i\text{log}(\hat{y}_i)&plus;(1-y_i)\text{log}(1-\hat{y}_i)" title="LogLoss = \frac{1}{N}\sum y_i\text{log}(\hat{y}_i)+(1-y_i)\text{log}(1-\hat{y}_i)" /></a></p>
+    - Multiclass:
+     <p align="center"><a href="https://www.codecogs.com/eqnedit.php?latex=LogLoss&space;=&space;\frac{1}{N}\sum_i^N\sum_i^L&space;y_{il}\text{log}(\hat{y}_{il})" target="_blank"><img src="https://latex.codecogs.com/gif.latex?LogLoss&space;=&space;\frac{1}{N}\sum_i^N\sum_i^L&space;y_{il}\text{log}(\hat{y}_{il})" title="LogLoss = \frac{1}{N}\sum_i^N\sum_i^L y_{il}\text{log}(\hat{y}_{il})" /></a></p>
+     
+  - Area Under Curve (AUC ROC)
+    - Only for binary tasks
+    - Depends only on ordering of the predictions, not on absolute values
+     
 - Cohen's (Quadratic weighted) Kappa
-
+  - Cohen's Kappa = 1 - (1-accuracy)/(1-p_e)
+  -  p_e = 1/N^2 sum_k(n_k1 * n_k2), what accuracy would be on average, if we randomly permute our predictions
+  - 
 
 
 
