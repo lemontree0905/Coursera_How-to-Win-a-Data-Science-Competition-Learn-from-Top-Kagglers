@@ -171,7 +171,10 @@ When you found the right hyper-parameters and want to get test predictions don't
   - RMSLE: Root Mean Square Logarithmic Error 
   - RMSE(log(y_targ+1),log(y_pred+1))
   - Frequently better than MAPE, less biased towards small targets yet works with relatvie errors
-  
+
+### Regression metrics optimization
+
+
 ### Classification metrics
 - Notation
   - Soft labes are clssifier's scores
@@ -193,10 +196,61 @@ When you found the right hyper-parameters and want to get test predictions don't
   -  p_e = 1/N^2 sum_k(n_k1 * n_k2), what accuracy would be on average, if we randomly permute our predictions
   - 
 
+### Classification metrics optimization
+- Logloss
+  - Tree-based
+    XGBoost,LightGBM
+    
+    Not working: RandomForestClassifier
+  - Linear models (Regression,SGDRegressor)
+
+  - How to calibrate
+    - Platt scaling (just fit Logistic Regression to your prediction)
+    - Isotonic regression (Just fit Isotonic Regression to your prediction)
+    - Stacking (Just fit XGBoost or neural net to your predictions)
+    
+- Accuracy
+  - Proxy loss: Logistic loss, Hinge loss
+  
+- AUC 
+ - Tree-based
+    XGBoost,LightGBM
+    
+    Not working: RandomForestClassifier
+ - Not working: Linear models (Regression,SGDRegressor)
+ 
+- Quadratic weighted Kappa
+  - Optimize MSE and find the right thresholds
+  - Custom smooth loss for GBDT or neural nets
+  par
+  
+### Advanced Feature Engineering
+#### Mean encoding (likelihood encoding, target encoding)
+- Ways to calculate 
+
+Goods - number of ones in at group, Bads -  number of zeros
+
+  - Likelihood = Goods/(Goods+Bads) = mean(target)
+  - Weight of Evidenc = ln(Goods/Bads) * 100
+  - Count = Goods = sum(target)
+  - Diff =  Goods - Bads
+ 
+#### Regularization
 
 
+## Week4
+### Hyperparameter Optimization
+- Hyperparameter optimization software
+  - Hyperopt
+  - Scikit-optimize
+  - Spearmint
+  - GPyOpt
+  - RoBO
+  - SMAC3
 
+- Tree-based models 
 
+GBDT(XGBoost,LightGBM,CatBoost), RandomForest/ExtraTrees, Others(RGF)
 
 
 
