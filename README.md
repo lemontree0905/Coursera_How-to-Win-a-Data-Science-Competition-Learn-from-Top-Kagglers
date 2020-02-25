@@ -201,7 +201,7 @@ When you found the right hyper-parameters and want to get test predictions don't
   - Tree-based
     XGBoost,LightGBM
     
-    Not working: RandomForestClassifier
+    ~~RandomForestClassifier~~
   - Linear models (Regression,SGDRegressor)
 
   - How to calibrate
@@ -216,7 +216,7 @@ When you found the right hyper-parameters and want to get test predictions don't
  - Tree-based
     XGBoost,LightGBM
     
-    Not working: RandomForestClassifier
+    ~~RandomForestClassifier~~
  - Not working: Linear models (Regression,SGDRegressor)
  
 - Quadratic weighted Kappa
@@ -228,7 +228,7 @@ When you found the right hyper-parameters and want to get test predictions don't
 #### Mean encoding (likelihood encoding, target encoding)
 - Ways to calculate 
 
-Goods - number of ones in at group, Bads -  number of zeros
+  Goods - number of ones in at group, Bads -  number of zeros
 
   - Likelihood = Goods/(Goods+Bads) = mean(target)
   - Weight of Evidenc = ln(Goods/Bads) * 100
@@ -240,6 +240,7 @@ Goods - number of ones in at group, Bads -  number of zeros
 
 ## Week4
 ### Hyperparameter Optimization
+
 - Hyperparameter optimization software
   - Hyperopt
   - Scikit-optimize
@@ -247,10 +248,24 @@ Goods - number of ones in at group, Bads -  number of zeros
   - GPyOpt
   - RoBO
   - SMAC3
+  
+- Notation
+  - *para*: the larger, the powerful the model (decrease if overfit)
+  - para: the larger, the heavier the constraint (increase if overfit)
+  
+- Tree-based models: GBDT(XGBoost,LightGBM,CatBoost), RandomForest/ExtraTrees, Others(RGF)
+  
+  |XGBoost| LightGBM
+  | --- | --- |
+  | *max_depth* | *max_depth/num_leaves*
+  | *subsample* |	*bagging_fraction*
+  | *colsample_bytree*, *colsample_bylevel* | *feature_fraction*
+  | **min_child_weight**, lambda, alpha | **min_data_in_leaf**, lambda_l1, lambda_l2
+  | *eta* | *learning rate*
+  | *num_round* | *num_iterations*
 
-- Tree-based models 
-
-GBDT(XGBoost,LightGBM,CatBoost), RandomForest/ExtraTrees, Others(RGF)
-
-
-
+  - Note
+    - If you increase *max_depth* and can not get the model to overfit, it can be a sign that there are a lot of important    interactions to extract.
+    - Freeze eta, find the number of rounds when the model begin to overfit. Multiply the number of steps by a factor of alpha and divide eta by the factor of alpha
+    
+    
