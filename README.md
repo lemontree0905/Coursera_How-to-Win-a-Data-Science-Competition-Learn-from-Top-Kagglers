@@ -224,7 +224,7 @@ When you found the right hyper-parameters and want to get test predictions don't
   - Custom smooth loss for GBDT or neural nets
   par
   
-### Advanced Feature Engineering
+### Advanced Feature Engineering I
 #### Mean encoding (likelihood encoding, target encoding)
 - Ways to calculate 
 
@@ -236,6 +236,9 @@ When you found the right hyper-parameters and want to get test predictions don't
   - Diff =  Goods - Bads
  
 #### Regularization
+
+### Advanced Feature Engineering II
+
 
 
 ## Week4
@@ -257,7 +260,7 @@ When you found the right hyper-parameters and want to get test predictions don't
   
   |XGBoost| LightGBM
   | --- | --- |
-  | *max_depth* | *max_depth/num_leaves*
+  | *max_depth* | *max_depth/num_leaves* | 
   | *subsample* |	*bagging_fraction*
   | *colsample_bytree*, *colsample_bylevel* | *feature_fraction*
   | **min_child_weight**, lambda, alpha | **min_data_in_leaf**, lambda_l1, lambda_l2
@@ -268,4 +271,42 @@ When you found the right hyper-parameters and want to get test predictions don't
     - If you increase *max_depth* and can not get the model to overfit, it can be a sign that there are a lot of important    interactions to extract.
     - Freeze eta, find the number of rounds when the model begin to overfit. Multiply the number of steps by a factor of alpha and divide eta by the factor of alpha
     
+  | RandomForest/ExtraTrees |
+  | --- |
+  | ***N_estimators*** (the higher the better)|
+  | *max_depth* (7 at first) |
+  | *max_feature* |
+  | min_samples_leaf |
+  | ***criterion*** (GINI is often better) |
+  
+- Neural nets
+  - what framework to use: Keras, Lasagne, TensorFlow, PyTorch, MxNet
+  | Neural nets |
+  | --- |
+  | *Number of neurons per layer* |
+  | *Number of layers* |
+  | Optimizers : SGD + momentum; *Adam/Adadelta/Adagrad/*... |
+  | *Batch size* |
+  | ***Learning rate*** |
+  | ***Regularization***: L2/L1 for weights, Dropout/Dropconnect, Static dropconnect
+  - Note
+    - If you increase *Batch size* by a factor of alpha, you can also increase ***Learning rate*** by the same factor
+    - Whenever you see a network overfitting, try first a dropout layer
     
+- Linear models
+  - Scikit-learn
+    - SVC/SVR (libLinear, libSVM)
+    - LogisticRegression/LinearRegression + regularizers
+    - SGDClassifier/SGDRegressor
+  - Regularization parameter (C, alpha, lambda, ...)
+    - start with very value and increase it
+    - SVC starts to work slower as C increases
+
+### Tips and tricks
+- Practical guide
+  - Data loading
+    - Do basic preprocessing and convert csv/txt files into hdf5/npy
+    - Downcast the data to 32-bits
+  - Performance evaluation
+    - Extensive validation is not always needed
+    - Start with fasted models - LightGBM, find important features
