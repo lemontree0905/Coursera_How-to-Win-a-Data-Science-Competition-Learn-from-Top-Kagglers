@@ -383,7 +383,56 @@ When you found the right hyper-parameters and want to get test predictions don't
     - Meta model is normally modest 
 - StackNet
 - Ensembling Tips and Tricks
-  - Diversity based on algorithms
-    - 2-3 gradient boosted trees(lightgb, xgboost, H2o, catboost)
-    - 
   
+  - 1st level: Diversity based on algorithms
+    - 2-3 gradient boosted trees(lightgb, xgboost, H2o, catboost)
+    - 2-3 Neural nets
+    - 1-2 Extratrees/Random Forest
+    - 1-2 linear models as in logistic/ridge regression, linear svm
+    - 1-2 knn models
+    - 1 Factorization machine (libfm)
+    - 1 svm with nonlinear kernel if size/memory allows
+  - 1st level: Diversity based on input data
+    - Categorical features: One hot, label encoding, target encoding
+    - Numerical features: outliers, binning, derivatives, percentiles, scaling
+    - Interactions: groupby, unsupervised 
+  - Subsequent level: Simpler Algorithms
+    - graident boosted trees with small depth
+    - Linear models with high regularization
+    - Extra Trees
+    - Shallow networks
+    - knn with BrayCurtis Distance
+    - Brute forcing a search for best linear weights based on cv
+  - Subsequent level: Feature engineering
+    - pairwise differences between meta features
+    - row-wise statistics like averages or stds
+    - Standard feature selection techniques
+  - Subsequent level: For every 7.5 models in previous level we add 1 in meta
+  - Be mindful of target leakage
+  
+### Catboost
+- Problems when using gradient boosting
+  - Categorical features
+  - Parameter tunning
+  - Prediction speed
+  - Overfitting
+  - Training speed
+- Catboost
+  - Categorical data
+    - One-hot encoding (one-hot_max_size)
+    - Number of appearances
+    - Statistics with label usage on a random permutation of the data
+    - Statistics on feature combinations
+  - usage of symmetric trees
+  - Ordered boosting
+  - Options for speedup (might affect quality)
+    - rsm (random subspace melt): controls part of the features that are used to select the next split
+    - max_ctr_complexity 
+    - to disable ordered boosting: boosting_type = 'Plain'
+  - Training parameters
+    - Number of trees + learning rate
+    - Tree depth
+    - L2 regularization
+    - Bagging temperature
+    - Random strength
+
