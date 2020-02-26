@@ -238,8 +238,48 @@ When you found the right hyper-parameters and want to get test predictions don't
 #### Regularization
 
 ### Advanced Feature Engineering II
+#### Statistics and distance based features
+- Groupby
+- Neighbors
+#### Matrix Factorization
+- Notes about Matrix Factorization
+  - Can be apply only for some columns
+  - Can provide additional diversity (Good for ensembles)
+  - It is a **lossy** transformation. Its efficiency depends on
+    - Particular task
+    - Number of latent factors 
+    
+- Implementation
+  - SVD and PCA
+  - TruncatedSVD (work with sparse matrics)
+  - Non-negative Matrix Fatorization
+    - Ensures that all latent factors are non-negative
+    - Good for counts-like data
 
+#### Feature Interactions 
+- Very efficient for tree-based methods
+- Operations
+  - Multiplication
+  - Sum
+  - Diff
+  - Division
+- Practical Notes
+  - a lot of possible interactions
+  - Need to reduce its number (Dimensionality reduction, Feature selection)
+- Extract Features from DT
+  - tree_model.apply()
+  - xgboost: booster.predict(pred_leaf=True)
+  
+#### t-SNE
+- math behind t-SNE
+  - The goal is to take a set of points in a high-dimensional space and find a faithful representation of those points in a lower-dimensional space, typically the 2D plane. The algorithm is non-linear and adapts to the underlying data, performing different transformations on different regions. Those differences can be a major source of confusion.
+  - perplexity: a guess about the number of close neighbors each point has
+  - epsilon: learning rate
 
+- Practical Notes
+  - Result heavily depends on hyperparameters (perplexity)
+  - Due to stochastic nature, tSNE provides different projections even for the same data/hyperparams (Train and Test should be projected together)
+  - tSNE runs for a long time with a big number of features (it is common to do dimensionality reduction before projection)
 
 ## Week4
 ### Hyperparameter Optimization
@@ -310,3 +350,37 @@ When you found the right hyper-parameters and want to get test predictions don't
   - Performance evaluation
     - Extensive validation is not always needed
     - Start with fasted models - LightGBM, find important features
+
+### Ensembling
+- Averaging (or blending), Weighted averaging, Conditional averaging
+- Bagging
+  - average slightly different versions of the same model to improve accuracy (example: RandomForest)
+  - Parameters that control bagging
+    - changeing the seed
+    - Row sampling or Bootstrapping
+    - Shuffling
+    - Column sampling
+    - Model-specific parameters
+    - Number of models (or bags)
+    - parallelism
+  - Implementation: BaggingClassifier and BaggingRegressor from sklearn
+- Boosting
+  - A form of weighted averaging of models where each model is built sequentially via taking into account the past model performance
+  - Main boosting types: Weight based and **Residual based**
+    - Weight based boosting parameters: learning rate (eta), Number of estimators (often inverse relation with eta), Input model which accepts weights, Sub boosting type (Adaboost)
+    - Residual based boosting parameters: learning rate (eta), Number of estimators, Row/Column sampling, Input model (works well with trees), Sub boosting type (Fully gradient based, Dart) 
+  - Residual based favourite implementations: Xgboost, Lightgbm, H2O's GBM, Catboost, Sklearn's GBM
+- Stacking
+  - Making predictions of a number of models in a hold-out set and then using a different(Meta) model to train on these predictions
+  - Methodology
+    - Splitting the train set into two disjoint sets
+    - Train several base learners on the first part
+    - Make predictions with the base learners on the second part
+    - Using the predicions from 3 as the input data to train a higher level learner
+  - Things to be mindful of
+    - With time sensitive data - respect time
+    - Diversity as important as performance (Different algorithms and Different input features)
+    - Meta model is normally modest 
+- StackNet
+  - 
+  
