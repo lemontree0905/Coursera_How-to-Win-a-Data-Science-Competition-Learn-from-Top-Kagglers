@@ -382,5 +382,8 @@ When you found the right hyper-parameters and want to get test predictions don't
     - Diversity as important as performance (Different algorithms and Different input features)
     - Meta model is normally modest 
 - StackNet
-  - 
+- Ensembling Tips and Tricks
+  - Diversity based on algorithms
+    - 2-3 gradient boosted trees(lightgb, xgboost, H2o, catboost)
+    - 
   
