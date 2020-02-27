@@ -29,15 +29,19 @@
 #### Numeric Feature
 - Scaling (Tree-based models doesn't depend on scaling)
   - MinMaxScaler, StandardScaler
-  - RobustScaler, PowerTransformer
-- Outliers(to protect Linear Model from outliers): winsorization
-  - Upperbound, Lowerbound = np.percetile(x,[1,99])
+- Outliers(to protect Linear Model from outliers)
+  - winsorization
+    - Upperbound, Lowerbound = np.percentile(x,[1,99])
     
-     y = np.clip(x,Upperbound,Lowerbound)     
-- Rank (scipy.stas.rankdata): set spaces between sorted values to be equal
+      y = np.clip(x,Upperbound,Lowerbound)  
+      
+    - scipy.stats.mstats.winsorize(a, limits=[0.05, 0.05])
+  - RobustScaler
+  - Rank (scipy.stas.rankdata): set spaces between sorted values to be equal
+    - scipy.stats.rankdata
     - Linear Model, KNN, Neural Networks can benifit from this if we have outliers
     - Concatenate train and test data
-- Log transform & Raising to power <1 (useful for **Neural Networks**)
+- Log transform & Raising to power <1 (both are useful for **Neural Networks**), PowerTransformer
  
 #### Categorical Feature
 - Ordinal feature: values are sorted in some meaningful order
@@ -76,18 +80,16 @@
   - Reconstruct value
   
 ### Feature extraction from texts and images
-
-
 #### Texts
 - Preprocessing
   - Lowercase, Lemmatization, Stemming, Stopwords
-- Bag of words 
+- Bag of words
   - very large vectors, meaning of each value in vector is known
+  - sklearn.feature_extraction.text.CountVectorizer
   - TFiDF can be of use as postprocessing   
   
-    sklearn.feature_extraction.text.CountVectorizer
-  
     sklearn.feature_extraction.text.TfidfVectorizer
+    
   - N-grams can help to use local context
 
 - Embeddings 
