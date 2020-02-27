@@ -7,18 +7,21 @@
 - Data collecting
 - Data preprocessing
 - Modelling 
-- Way to evaluate model in real lift
+- Way to evaluate model in real life
 - Way to deploy model (monitor model performance and re-train it on new data)
 
 ### Main ML algorithms
-- Linear 
+- Linear
+  - split space into two sub-spaces sepatated by a hyper plane
   - Good for **sparse high dimensional** data
   - Lasso/Ridge/Logistic Regression; SVM
-- Tree-base method 
+- Tree-based method 
+  - split space into boxes
   - Good for tabular data
   - Hard to capture linear dependencies
   - Decision Tree, Random Forest, GBDT, XGBoost, LightGBM
-- KNN-based methods
+- kNN-based methods
+  - heavy rely on how to measure points "closeness"
 - Neural Networks
   - Good for **image**, **sounds**, **text**, **sequences**
 
