@@ -86,12 +86,11 @@
 - Bag of words
   - very large vectors, meaning of each value in vector is known
   - sklearn.feature_extraction.text.CountVectorizer
-  - TFiDF can be of use as postprocessing   
-  
+  - N-grams can help to use local context
+  - Postprocessing: TFiDF 
+    
     sklearn.feature_extraction.text.TfidfVectorizer
     
-  - N-grams can help to use local context
-
 - Embeddings 
   - relatively small vectors, values in vector can be interpreted only in some cases, words with similar meaning often have similar embeddings
   - Words: word2vec, Glove, FastText, etc
