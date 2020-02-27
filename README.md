@@ -28,15 +28,16 @@
 ### Feature Preprocessing
 #### Numeric Feature
 - Scaling (Tree-based models doesn't depend on scaling)
-  - MinMaxScaler, StandardScaler, RobustScaler
-  - Outliers(to protect Linear Model from outliers): winsorization
-    - Upperbound, Lowerbound = np.percetile(x,[1,99])
+  - MinMaxScaler, StandardScaler
+  - RobustScaler, PowerTransformer
+- Outliers(to protect Linear Model from outliers): winsorization
+  - Upperbound, Lowerbound = np.percetile(x,[1,99])
     
-      y = np.clip(x,Upperbound,Lowerbound)     
-  - Rank (scipy.stas.rankdata): set spaces between sorted values to be equal
+     y = np.clip(x,Upperbound,Lowerbound)     
+- Rank (scipy.stas.rankdata): set spaces between sorted values to be equal
     - Linear Model, KNN, Neural Networks can benifit from this if we have outliers
     - Concatenate train and test data
-  - Log transform & Raising to power <1 (useful for **Neural Networks**)
+- Log transform & Raising to power <1 (useful for **Neural Networks**)
  
 #### Categorical Feature
 - Ordinal feature: values are sorted in some meaningful order
@@ -44,18 +45,18 @@
 - Label encoding (useful for **tree-based** model)
   - Alphabetical: sklearn.preprocessing.LabelEncoder
   - Order of apperance: Pandas.factorize
-  - Frequency encoding (useful for **linear** and **tree-based** models)
+  - Frequency encoding (useful for both **linear** and **tree-based** models)
     - If there were ties, use rankdata first
-    - encoding = titanic.groupty('Embarked').size()
+    - encoding = titanic.groupby('Embarked').size()
     
       encoding = encoding/len(titanic)
       
       titanic['enc'] = titanic.Embarked.map(encoding)
 - One-hot encoding (useful for **non-tree-based** model)
   - pandas.get_dummies, sklearn,preprocessing.OneHotEncoder
-  - Sparse matrix
+  - Sparse matrix (useful for text and categorical features)
   
-- Interaction of categorical features can help **Linear model** and **KNN**
+- Interaction of categorical features is usually helpful for **non-tree-based** model, e.g. **Linear model** and **KNN**
 
 #### Datetime and Coordinates
 - Datetime
@@ -67,13 +68,16 @@
   - Centers of clusters
   - Aggregated statisitcs
   
-### Missing values
+#### Missing values
 - np.isnan(), pd.isnull().sum()
 - Fillna approaches
-  - -999, mean, median
+  - replace NAN with some value outside fixed value range: -999,-1,etc (**linear model** and **neural networks** may suffer)
+  - replace NAN with mean, median (beneficial for simple **linear model** and **neural networks**, **tree-based** model may suffer. We may add "Isnull" feature)
   - Reconstruct value
   
 ### Feature extraction from texts and images
+
+
 #### Texts
 - Preprocessing
   - Lowercase, Lemmatization, Stemming, Stopwords
