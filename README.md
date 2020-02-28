@@ -95,12 +95,13 @@
   - relatively small vectors, values in vector can be interpreted only in some cases, words with similar meaning often have similar embeddings
   - Words: word2vec, Glove, FastText, etc
   - Sentences: Doc2Vec, etc
+  - There are pretrained models
         
 #### Image
 - Features can be extracted from different layers (Descriptors)
-- Careful shoosing of pretrained network can help
+- Careful choosing of pretrained network can help
 - Finetuning allows to refine pretrained models
-- Data augmentation can improve the model
+- Data augmentation can improve the model (crops, rotations, adding noise)
 
 ## Week2 
 ### Exploratory data analysis
