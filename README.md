@@ -118,6 +118,7 @@
   - Explore individual features
     - Histograms: plt.hist(x)
     - Plot (index versus value): plt.plot(x,'.'), plt.scatter(range(len(x)), x, c=y)
+    - statistics: df.describe()
   - Explore feature relations
     - Pairs: plt.scatter(x1,x2), pd.scatter_matrix(df); df.corr(), plt.matshow()
     - Groups: df.mean().sort_values().plot(style='.')
