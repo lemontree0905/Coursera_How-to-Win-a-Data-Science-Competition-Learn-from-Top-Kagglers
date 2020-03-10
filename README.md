@@ -167,18 +167,17 @@ When you found the right hyper-parameters and want to get test predictions don't
 ## Week3
 ### Regression metrics
 - MSE, RMSE, R-squared
-  - MSE: Mean Square Error
-  - RMSE: Root mean square error (a bit different from MSE in the case graiend based methods)
+  - MSE: Mean Square Error (best constant: target mean)
+  - RMSE: Root mean square error (a bit different from MSE in the case of gradient-based methods)
   - R-squared
 - MAE: Mean Absolute Error (**Robust to outliers**)
-  - Not that sensitive to outliers as MSE
+  - Not that sensitive to outliers as MSE 
   - Widely used in **finance**
-  - Median of target values is optimal for MAE
+  - best constant: target median
 - (R)MSPE, MAPE 
   - MSPE: Mean Square Percentage Error (best constant: weighted target mean)
   - MAPE: Mean Absolute Percentage Error (best constant: weighted target median)
-- (R)MSLE
-  - RMSLE: Root Mean Square Logarithmic Error 
+- (R)MSLE: Root Mean Square Logarithmic Error 
   - RMSE(log(y_targ+1),log(y_pred+1))
   - Frequently better than MAPE, less biased towards small targets yet works with relatvie errors
 
@@ -203,8 +202,8 @@ When you found the right hyper-parameters and want to get test predictions don't
      
 - Cohen's (Quadratic weighted) Kappa
   - Cohen's Kappa = 1 - (1-accuracy)/(1-p_e)
-  -  p_e = 1/N^2 sum_k(n_k1 * n_k2), what accuracy would be on average, if we randomly permute our predictions
-  - 
+  - p_e = 1/N^2 sum_k(n_k1 * n_k2), what accuracy would be on average, if we randomly permute our predictions
+  - Weighted Kappa
 
 ### Classification metrics optimization
 - Logloss
